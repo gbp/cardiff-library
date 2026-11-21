@@ -20,6 +20,7 @@ dev = [
   "pytest>=8",
   "pytest-recording>=0.13",
   "vcrpy>=7",
+  "pytest-homeassistant-custom-component>=0.13",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -29,3 +30,4 @@ packages = ["custom_components", "src/cardiff_library_cli"]
 testpaths = ["tests"]
 addopts = "--block-network"
 pythonpath = ["tests", "."]
+asyncio_mode = "auto"

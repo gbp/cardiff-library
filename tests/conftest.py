@@ -20,3 +20,9 @@ def every_recorded_request_is_sent(request):
     replaying = request.config.getoption("--record-mode") in (None, "none")
     if cassette is not None and replaying:
         assert cassette.all_played
+
+
+@pytest.fixture(autouse=True)
+def auto_enable_custom_integrations(request):
+    if "hass" in request.fixturenames:
+        request.getfixturevalue("enable_custom_integrations")

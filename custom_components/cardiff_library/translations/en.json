@@ -1,0 +1,34 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a library account",
+        "data": {
+          "label": "Label",
+          "card": "Card number",
+          "pin": "PIN"
+        },
+        "data_description": {
+          "label": "The name shown on the dashboard for this account.",
+          "card": "The barcode number on the library card."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Enter the new PIN",
+        "description": "The library rejected the PIN for {label}.",
+        "data": {
+          "pin": "PIN"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "The library rejected the card number or PIN.",
+      "cannot_connect": "The library site did not reply as expected. Try again later.",
+      "unknown": "Something went wrong. Check the Home Assistant log."
+    },
+    "abort": {
+      "already_configured": "This card is already added.",
+      "reauth_successful": "The PIN is updated."
+    }
+  }
+}

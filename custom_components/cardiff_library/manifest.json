@@ -1,0 +1,15 @@
+{
+  "domain": "cardiff_library",
+  "name": "Cardiff Libraries",
+  "codeowners": [
+    "@gbp"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/gbp/cardiff-library",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/gbp/cardiff-library/issues",
+  "requirements": [
+    "beautifulsoup4>=4.12"
+  ],
+  "version": "0.1.0"
+}
