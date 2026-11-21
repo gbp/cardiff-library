@@ -14,6 +14,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=8",
+  "pytest-recording>=0.13",
+  "vcrpy>=7",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -21,3 +23,5 @@ packages = ["src/cardiff_library"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--block-network"
+pythonpath = ["tests"]
