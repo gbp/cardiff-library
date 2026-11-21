@@ -17,7 +17,7 @@ async def test_the_card_is_served_and_loaded_on_every_dashboard(hass):
     (path,) = hass.http.async_register_static_paths.call_args.args[0]
     assert (path.url_path, path.path) == (CARD_URL, str(CARD_FILE))
     assert CARD_FILE.is_file()
-    assert hass.data[DATA_EXTRA_MODULE_URL] == {f"{CARD_URL}?v=0.1.0"}
+    assert hass.data[DATA_EXTRA_MODULE_URL] == {f"{CARD_URL}?v=0.2.0"}
 
 
 async def test_nothing_is_registered_without_the_frontend(hass):
