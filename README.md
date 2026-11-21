@@ -24,12 +24,14 @@ due date. The sensor updates every 6 hours. To update it now, run the
 
 ## Add the dashboard card
 
-1. Open a dashboard and select **Edit dashboard → Add card → Manual**.
-2. Paste the contents of [`card.yaml`](card.yaml).
+1. Open a dashboard and select **Edit dashboard → Add card**.
+2. Search for **Library loans** and select it.
+3. Select **Save**.
 
-The card lists the loans of every account by due date, with a cover, the
-account label and the due date. It marks overdue loans and loans due within
-3 days.
+The card needs no settings. It lists the loans of every account by due date,
+with a cover, the account label and the due date. It marks overdue loans and
+loans due within 3 days. If the card is not in the list after an update,
+reload the browser page.
 
 ## Use the command line tool
 
