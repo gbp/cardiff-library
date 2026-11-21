@@ -8,6 +8,7 @@ output, because vcrpy also runs the filters on playback.
 
 import html
 import re
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 
@@ -58,8 +59,11 @@ def _loans_table(page: str) -> str:
     for row in BeautifulSoup(page, "html.parser").select("table.table-stacked tbody tr"):
         title = row.select_one("h2.card-title")
         author = row.select_one("div.card-text span.d-block")
+        image = row.select_one("img[data-imgurls]")
+        covers = _scrub_covers(image["data-imgurls"]) if image else ""
         rows.append(
             "<tr>"
+            f'<td class="col-image"><img data-imgurls="{html.escape(covers)}"></td>'
             f'<td><h2 class="card-title">{_text(title)}</h2>'
             f'<div class="card-text"><span class="d-block">{_text(author)}</span></div></td>'
             f'<td data-caption="Due">{_caption(row, "Due")}</td>'
@@ -67,6 +71,22 @@ def _loans_table(page: str) -> str:
             "</tr>"
         )
     return f'<table class="table-stacked"><tbody>{"".join(rows)}</tbody></table>'
+
+
+def _scrub_covers(urls: str) -> str:
+    return "**".join(_scrub_cover(url) for url in urls.split("**"))
+
+
+def _scrub_cover(url: str) -> str:
+    if not url:
+        return url
+    parts = urlsplit(url)
+    query = [
+        (name, value)
+        for name, value in parse_qsl(parts.query, keep_blank_values=True)
+        if name in ("ISBN", "SIZE")
+    ]
+    return scrub_url(urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), "")))
 
 
 def _loans_link(page: str) -> str:

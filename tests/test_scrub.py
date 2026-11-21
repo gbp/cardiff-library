@@ -37,6 +37,15 @@ def test_dashboard_keeps_only_the_loans_link_with_numbers_replaced():
     assert "LOANRENQ/999999999" in find_loans_link(scrubbed)
 
 
+def test_cover_addresses_lose_the_site_key_and_keep_working():
+    image = '<img data-imgurls="https://img.test/s?ISBN=9780000000002&amp;DBM=realkey&amp;SIZE=m&amp;X=other**">'
+    scrubbed = scrub_body(LOANS.replace('<td><h2', f'<td class="col-image">{image}</td><td><h2'))
+
+    assert "realkey" not in scrubbed and "other" not in scrubbed
+    assert parse_loans(scrubbed)[0].cover == "https://img.test/s?ISBN=9999999999999&SIZE=m"
+    assert scrub_body(scrubbed) == scrubbed
+
+
 def test_text_is_escaped_so_the_cassette_stays_valid():
     loan = parse_loans(scrub_body(LOANS.replace("Atlas", "A < B")))[0]
 

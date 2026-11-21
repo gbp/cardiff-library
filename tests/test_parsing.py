@@ -12,11 +12,11 @@ from cardiff_library.parsing import (
 )
 
 
-def row(title, author, due, status="", year="2022"):
+def row(title, author, due, status="", year="2022", cover=""):
     return f"""
 <tr>
   <td class="counter"><input type="checkbox" name="SVL"></td>
-  <td class="col-image"></td>
+  <td class="col-image">{cover}</td>
   <td><h2 class="card-title mb-0"><span class="d-block"><a href="/x"><span>{title}</span></a></span></h2>
     <div class="card-text"><span class="d-block">{author}</span><span class="d-block">{year}</span></div></td>
   <td class="text-nowrap below-image" data-caption="Due"><span class="d-block">{due}</span></td>
@@ -45,6 +45,23 @@ def test_reads_each_loan():
         Loan("Atlas", "Ng, A", date(2026, 12, 5), "Renewed 2 times"),
         Loan("Moon", "Ola, B", date(2026, 12, 12), ""),
     ]
+
+
+def test_reads_the_first_cover_address_that_has_an_isbn():
+    image = (
+        '<img src="/loading.png" data-imgurls="https://img.test/s?ISBN=&amp;SIZE=m**'
+        'https://img.test/s?ISBN=9780000000002&amp;SIZE=m**">'
+    )
+
+    loan = parse_loans(page(row("Atlas", "Ng, A", "05 Dec 2026", cover=image)))[0]
+
+    assert loan.cover == "https://img.test/s?ISBN=9780000000002&SIZE=m"
+
+
+def test_a_loan_with_no_isbn_has_no_cover():
+    image = '<img data-imgurls="https://img.test/s?ISBN=&amp;SIZE=m**">'
+
+    assert parse_loans(page(row("Atlas", "Ng, A", "05 Dec 2026", cover=image)))[0].cover is None
 
 
 def test_a_loan_without_an_author_still_reads():

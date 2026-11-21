@@ -20,6 +20,7 @@ class Loan:
     author: str
     due: date
     status: str
+    cover: str | None = None
 
 
 def is_login_page(html: str) -> bool:
@@ -57,7 +58,20 @@ def _parse_row(row) -> Loan:
         author=details.get_text(strip=True) if details else "",
         due=datetime.strptime(_caption(row, "Due"), "%d %b %Y").date(),
         status=_caption(row, "Status"),
+        cover=_cover(row),
     )
+
+
+# The page lists several image addresses split by **, and some have an empty
+# ISBN that only returns a blank image.
+def _cover(row) -> str | None:
+    image = row.select_one("img[data-imgurls]")
+    if image is None:
+        return None
+    for url in image["data-imgurls"].split("**"):
+        if re.search(r"[?&]ISBN=[0-9Xx]+", url):
+            return url
+    return None
 
 
 def _caption(row, name: str) -> str:

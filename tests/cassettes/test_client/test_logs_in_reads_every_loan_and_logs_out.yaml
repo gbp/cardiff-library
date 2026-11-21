@@ -42,11 +42,12 @@ interactions:
       Content-Type:
       - text/html
     body:
-      string: <table class="table-stacked"><tbody><tr><td><h2 class="card-title">Atlas</h2><div
-        class="card-text"><span class="d-block">Ng, A</span></div></td><td data-caption="Due">05
-        Dec 2026</td><td data-caption="Status">Renewed 2 times</td></tr><tr><td><h2
-        class="card-title">Moon</h2><div class="card-text"><span class="d-block">Ola,
-        B</span></div></td><td data-caption="Due">12 Dec 2026</td><td data-caption="Status"></td></tr></tbody></table>
+      string: <table class="table-stacked"><tbody><tr><td class="col-image"><img data-imgurls="https://www.bibdsl.co.uk/xmla/image-service.asp?ISBN=9999999999999&amp;SIZE=m&amp;DBM=test**"></td><td><h2
+        class="card-title">Atlas</h2><div class="card-text"><span class="d-block">Ng,
+        A</span></div></td><td data-caption="Due">05 Dec 2026</td><td data-caption="Status">Renewed
+        2 times</td></tr><tr><td><h2 class="card-title">Moon</h2><div class="card-text"><span
+        class="d-block">Ola, B</span></div></td><td data-caption="Due">12 Dec 2026</td><td
+        data-caption="Status"></td></tr></tbody></table>
 - request:
     body: null
     headers: {}
