@@ -1,6 +1,10 @@
 {
   "domain": "cardiff_library",
   "name": "Cardiff Libraries",
+  "after_dependencies": [
+    "frontend",
+    "http"
+  ],
   "codeowners": [
     "@gbp"
   ],
