@@ -1,7 +1,7 @@
 from datetime import date
 from html import escape
 
-from cardiff_library.parsing import Loan
+from .parsing import Loan
 
 STYLE = """
 :root {

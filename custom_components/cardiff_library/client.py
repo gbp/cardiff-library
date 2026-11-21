@@ -2,7 +2,7 @@ import re
 
 import httpx
 
-from cardiff_library.parsing import (
+from .parsing import (
     LibraryError,
     Loan,
     PageError,

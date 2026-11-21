@@ -2,7 +2,7 @@ from datetime import date
 
 import pytest
 
-from cardiff_library.parsing import (
+from custom_components.cardiff_library.parsing import (
     Loan,
     PageError,
     find_loans_link,

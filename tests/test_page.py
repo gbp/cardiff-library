@@ -1,7 +1,7 @@
 from datetime import date
 
-from cardiff_library.page import render_page
-from cardiff_library.parsing import Loan
+from custom_components.cardiff_library.page import render_page
+from custom_components.cardiff_library.parsing import Loan
 
 TODAY = date(2026, 12, 1)
 

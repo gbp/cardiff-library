@@ -12,7 +12,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 
-from cardiff_library.parsing import find_next_page
+from custom_components.cardiff_library.parsing import find_next_page
 
 KEPT_RESPONSE_HEADERS = {"content-type", "location"}
 LOGIN_FORM = '<form><input type="password" name="BRWLPWD"></form>'

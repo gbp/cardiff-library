@@ -9,9 +9,9 @@ from pathlib import Path
 
 import httpx
 
-from cardiff_library.client import fetch_loans, new_http_client
-from cardiff_library.page import render_page, when
-from cardiff_library.parsing import LibraryError, Loan
+from custom_components.cardiff_library.client import fetch_loans, new_http_client
+from custom_components.cardiff_library.page import render_page, when
+from custom_components.cardiff_library.parsing import LibraryError, Loan
 
 DEFAULT_CONFIG = Path.home() / ".config" / "cardiff-library" / "accounts.toml"
 

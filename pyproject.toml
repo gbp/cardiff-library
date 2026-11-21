@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-cardiff-library = "cardiff_library.cli:main"
+cardiff-library = "cardiff_library_cli.cli:main"
 
 [project.optional-dependencies]
 dev = [
@@ -23,9 +23,9 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/cardiff_library"]
+packages = ["custom_components", "src/cardiff_library_cli"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--block-network"
-pythonpath = ["tests"]
+pythonpath = ["tests", "."]

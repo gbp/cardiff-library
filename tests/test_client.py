@@ -2,8 +2,8 @@ from datetime import date
 
 import pytest
 
-from cardiff_library.client import InvalidLogin, _all_loans, fetch_loans, new_http_client
-from cardiff_library.parsing import Loan, PageError
+from custom_components.cardiff_library.client import InvalidLogin, _all_loans, fetch_loans, new_http_client
+from custom_components.cardiff_library.parsing import Loan, PageError
 
 
 def fetch(card="00000000000000", pin="0000"):

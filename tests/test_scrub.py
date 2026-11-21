@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from cardiff_library.parsing import find_loans_link, find_next_page, parse_loans
+from custom_components.cardiff_library.parsing import find_loans_link, find_next_page, parse_loans
 from scrub import scrub_body, scrub_request, scrub_response
 
 LOANS = """

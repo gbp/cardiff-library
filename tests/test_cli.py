@@ -2,7 +2,7 @@ from datetime import date
 
 import pytest
 
-from cardiff_library.cli import main
+from cardiff_library_cli.cli import main
 
 TODAY = date(2026, 12, 1)
 ACCOUNTS = """
