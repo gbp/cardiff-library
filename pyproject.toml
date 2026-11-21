@@ -12,6 +12,9 @@ dependencies = [
   "httpx>=0.27",
 ]
 
+[project.scripts]
+cardiff-library = "cardiff_library.cli:main"
+
 [project.optional-dependencies]
 dev = [
   "pytest>=8",

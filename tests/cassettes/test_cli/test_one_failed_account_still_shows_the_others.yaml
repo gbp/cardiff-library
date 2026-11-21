@@ -1,0 +1,75 @@
+version: 1
+interactions:
+- request:
+    body: null
+    headers: {}
+    method: POST
+    uri: https://cardiff.spydus.co.uk/cgi-bin/spydus.exe/PGM/OPAC/CCOPT/LB/2
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - text/html
+    body:
+      string: <form><input type="password" name="BRWLPWD"></form>
+- request:
+    body: null
+    headers: {}
+    method: POST
+    uri: https://cardiff.spydus.co.uk/cgi-bin/spydus.exe/PGM/OPAC/CCOPT/LB/2
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - text/html
+    body:
+      string: <meta http-equiv="refresh" content="0;URL=/cgi-bin/spydus.exe/ENQ/OPAC/BRWENQ/999999999?QRY=%23999999999&amp;QRYTEXT=My%20details">
+- request:
+    body: null
+    headers: {}
+    method: GET
+    uri: https://cardiff.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/BRWENQ/999999999?QRY=%23999999999&QRYTEXT=My%20details
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - text/html
+    body:
+      string: <a href="/cgi-bin/spydus.exe/ENQ/OPAC/LOANRENQ/999999999?QRY=OND01%5C9999999&amp;FMT=CL&amp;NRECS=30">Current
+        loans</a>
+- request:
+    body: null
+    headers: {}
+    method: GET
+    uri: https://cardiff.spydus.co.uk/cgi-bin/spydus.exe/ENQ/OPAC/LOANRENQ/999999999?QRY=OND01%5C9999999&FMT=CL&NRECS=200
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - text/html
+    body:
+      string: <table class="table-stacked"><tbody><tr><td><h2 class="card-title">Moon</h2><div
+        class="card-text"><span class="d-block">Ola, B</span></div></td><td data-caption="Due">30
+        Nov 2026</td><td data-caption="Status"></td></tr></tbody></table>
+- request:
+    body: null
+    headers: {}
+    method: GET
+    uri: https://cardiff.spydus.co.uk/cgi-bin/spydus.exe/PGM/OPAC/CCOPT/LB/3
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - text/html
+    body:
+      string: ''
