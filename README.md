@@ -33,6 +33,10 @@ with a cover, the account label and the due date. It marks overdue loans and
 loans due within 3 days. If the card is not in the list after an update,
 reload the browser page.
 
+Use the chips at the top of the card to show all books or one borrower's
+books, and to sort by due date or by title. The card keeps your last choice
+in the browser. To set the starting borrower and sort, edit the card.
+
 ## Use the command line tool
 
 Put your accounts in `~/.config/cardiff-library/accounts.toml`. Make the file
