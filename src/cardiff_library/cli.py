@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 import tomllib
+import webbrowser
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -9,6 +10,7 @@ from pathlib import Path
 import httpx
 
 from cardiff_library.client import fetch_loans, new_http_client
+from cardiff_library.page import render_page, when
 from cardiff_library.parsing import LibraryError, Loan
 
 DEFAULT_CONFIG = Path.home() / ".config" / "cardiff-library" / "accounts.toml"
@@ -33,15 +35,6 @@ def load_accounts(path: Path) -> list[Account]:
         raise LibraryError(f"{path} needs [[account]] entries with label, card and pin") from error
 
 
-def when(due: date, today: date) -> str:
-    days = (due - today).days
-    if days < 0:
-        return f"OVERDUE {-days}d"
-    if days == 0:
-        return "today"
-    return f"{days}d"
-
-
 def print_loans(rows: list[tuple[str, Loan]], today: date) -> None:
     width = max((len(label) for label, _ in rows), default=0)
     for label, loan in sorted(rows, key=lambda row: (row[1].due, row[0])):
@@ -63,6 +56,7 @@ def main(argv: list[str] | None = None, today: date | None = None) -> int:
         default=Path(os.environ.get("CARDIFF_LIBRARY_CONFIG", DEFAULT_CONFIG)),
         help=f"accounts file (default {DEFAULT_CONFIG})",
     )
+    parser.add_argument("--html", type=Path, help="also write a page of covers here and open it")
     args = parser.parse_args(argv)
 
     try:
@@ -82,7 +76,15 @@ def main(argv: list[str] | None = None, today: date | None = None) -> int:
             print(f"Error for {account.label}: {detail}", file=sys.stderr)
             failed = True
 
-    print_loans(rows, today or date.today())
+    today = today or date.today()
+    print_loans(rows, today)
+    if args.html:
+        try:
+            args.html.write_text(render_page(rows, today), encoding="utf-8")
+        except OSError:
+            print(f"Error writing {args.html}", file=sys.stderr)
+            return 1
+        webbrowser.open(args.html.resolve().as_uri())
     if not rows and not failed:
         print("No books on loan.")
     return 1 if failed else 0

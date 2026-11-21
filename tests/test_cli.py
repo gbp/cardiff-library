@@ -44,6 +44,27 @@ def test_one_failed_account_still_shows_the_others(config, capsys):
     assert "Moon" in output.out
 
 
+@pytest.mark.vcr
+def test_html_option_writes_the_page_and_opens_it(config, tmp_path, monkeypatch, capsys):
+    opened = []
+    monkeypatch.setattr("webbrowser.open", opened.append)
+    page = tmp_path / "loans.html"
+
+    assert main(["--config", str(config), "--html", str(page)], today=TODAY) == 0
+
+    assert "Atlas" in page.read_text() and "Moon" in page.read_text()
+    assert opened == [page.resolve().as_uri()]
+
+
+@pytest.mark.vcr
+def test_a_page_that_cannot_be_written_is_an_error(config, tmp_path, capsys):
+    page = tmp_path / "missing" / "loans.html"
+
+    assert main(["--config", str(config), "--html", str(page)], today=TODAY) == 1
+
+    assert "Error writing" in capsys.readouterr().err
+
+
 def test_a_missing_accounts_file_says_where_it_looked(tmp_path, capsys):
     assert main(["--config", str(tmp_path / "none.toml")]) == 1
 
