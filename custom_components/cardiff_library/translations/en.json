@@ -30,5 +30,12 @@
       "already_configured": "This card is already added.",
       "reauth_successful": "The PIN is updated."
     }
+  },
+  "entity": {
+    "sensor": {
+      "loans": {
+        "name": "Loans"
+      }
+    }
   }
 }
