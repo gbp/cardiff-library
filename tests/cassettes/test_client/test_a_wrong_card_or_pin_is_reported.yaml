@@ -1,0 +1,16 @@
+version: 1
+interactions:
+- request:
+    body: null
+    headers: {}
+    method: POST
+    uri: https://cardiff.spydus.co.uk/cgi-bin/spydus.exe/PGM/OPAC/CCOPT/LB/2
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - text/html
+    body:
+      string: <form><input type="password" name="BRWLPWD"></form>

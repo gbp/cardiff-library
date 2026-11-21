@@ -9,6 +9,7 @@ description = "List current loans and due dates for Cardiff Libraries accounts"
 requires-python = ">=3.13"
 dependencies = [
   "beautifulsoup4>=4.12",
+  "httpx>=0.27",
 ]
 
 [project.optional-dependencies]
